@@ -6,7 +6,8 @@ using UnityEngine;
 public enum MosquitoStates
 {
     Moving,
-    MiniGame,
+    EnterMiniGame,
+    InMiniGame,
     Returning,
     Dead
 }
@@ -16,6 +17,16 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance {  get; private set; }
 
     [SerializeField] private float targetRange = 5f;
+    [SerializeField] private float miniGameRange = 0.5f;
+    [SerializeField] private float miniGameTimer = 3f;
+    [SerializeField] private float speedOfTrans = 2f;
+    [SerializeField] private float moveSpeed = 5f;
+
+    [SerializeField] private TMP_Text coinsText;
+    private int coinsCollected;
+
+
+    private float miniGameStartTimer = 0;
 
     [SerializeField] private ReactionBarMechanic reactionBarObject;
 
@@ -47,8 +58,12 @@ public class PlayerController : MonoBehaviour
                 Move();
                 break;
 
-            case MosquitoStates.MiniGame:
+            case MosquitoStates.EnterMiniGame:
                 MoveToTarget();
+                break;
+
+            case MosquitoStates.InMiniGame:
+                MiniGameTimer();
                 break;
 
             case MosquitoStates.Returning:
@@ -72,13 +87,14 @@ public class PlayerController : MonoBehaviour
         {
             // Start Moving Towards target
             _mController.StopCart();// only stop logic after implementing states we can use start also (use W to move again).
-            UpdateMosquitoState(MosquitoStates.MiniGame);
+            UpdateMosquitoState(MosquitoStates.EnterMiniGame);
         }
     }
 
     private void Move()
     {
-        float movePosX = transform.localPosition.x + Input.GetAxis("Horizontal") * 5 * Time.deltaTime;
+        float movePosX = transform.localPosition.x + Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        float movePosY = transform.localPosition.y + Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
         // Check max right Position
         if (movePosX > 3.25f)
@@ -92,8 +108,18 @@ public class PlayerController : MonoBehaviour
             movePosX = -3.25f;
         }
 
+        if (movePosY > 3.25f)
+        {
+            movePosY = 3.25f;
+        }
+
+        if (movePosY < -3.25f)
+        {
+            movePosY = -3.25f;
+        }
+
         transform.localPosition = new Vector3(movePosX,
-            transform.localPosition.y, transform.localPosition.z);
+            movePosY, transform.localPosition.z);
 
     }
 
@@ -103,17 +129,30 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPosition = LevelManager.Instance.GetCurrentTargetPosition();
         Vector3 moveDir = (targetPosition - transform.position).normalized;
 
-        transform.position += moveDir * Time.deltaTime;
+        transform.position += moveDir * speedOfTrans * Time.deltaTime;
         transform.LookAt(targetPosition);
 
 
         // If missied reaction bar time till this distance kill the player
-        if (Vector3.Distance(transform.position, targetPosition) < 1f)
+        // If we are in minigame range start minigame
+        if (Vector3.Distance(transform.position, targetPosition) < miniGameRange)
         {
-            // This should be dead state instead of returning -- but keep it as returning to test things and until we add death logic
+            UpdateMosquitoState(MosquitoStates.InMiniGame);
+        }
+    }
+
+    private void MiniGameTimer()
+    {
+
+        miniGameStartTimer += Time.deltaTime;
+
+        Debug.Log(miniGameStartTimer);
+        if (miniGameStartTimer >= miniGameTimer)
+        {
             UpdateMosquitoState(MosquitoStates.Returning);
         }
     }
+
 
     private void MoveToRoot()
     {
@@ -127,7 +166,7 @@ public class PlayerController : MonoBehaviour
         }
         Vector3 moveDir = (Vector3.zero - transform.localPosition).normalized;
 
-        transform.localPosition += moveDir * Time.deltaTime;
+        transform.localPosition += moveDir * speedOfTrans * Time.deltaTime;
         transform.localEulerAngles = Vector3.zero;
     }
 
@@ -141,7 +180,13 @@ public class PlayerController : MonoBehaviour
                 _mController.StartCart();
                 break;
 
-            case MosquitoStates.MiniGame:
+            case MosquitoStates.EnterMiniGame:
+                //reactionBarObject.gameObject.SetActive(true);
+                //reactionBarObject.StartMiniGame();
+                miniGameStartTimer = 0f;
+                break;
+
+            case MosquitoStates.InMiniGame:
                 reactionBarObject.gameObject.SetActive(true);
                 reactionBarObject.StartMiniGame();
                 break;
@@ -165,8 +210,19 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            UpdateMosquitoState(MosquitoStates.Dead);
+            UpdateMosquitoState(MosquitoStates.Returning);
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coins"))
+        {
+            Debug.Log(other.gameObject);
+            Destroy(other.gameObject);
+
+            coinsCollected += 1;
+            coinsText.text =coinsCollected.ToString();
+        }
+    }
 }

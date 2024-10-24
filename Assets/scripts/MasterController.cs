@@ -21,11 +21,11 @@ public class MasterController : MonoBehaviour
     void Update()
     {
         // Testing
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             StartCart();
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             StopCart();
         }
