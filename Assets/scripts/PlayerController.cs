@@ -224,5 +224,14 @@ public class PlayerController : MonoBehaviour
             coinsCollected += 1;
             coinsText.text =coinsCollected.ToString();
         }
+
+        if (other.CompareTag("Rings"))
+        {
+            Debug.Log(other.gameObject);
+            Destroy(other.gameObject);
+
+            coinsCollected += 10;
+            coinsText.text = coinsCollected.ToString();
+        }
     }
 }
