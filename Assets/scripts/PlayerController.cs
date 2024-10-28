@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private float miniGameStartTimer = 0;
 
     [SerializeField] private ReactionBarMechanic reactionBarObject;
+    private HealthSystem health;
 
 
     private GameObject nextTarget;
@@ -46,6 +47,12 @@ public class PlayerController : MonoBehaviour
         Instance = this;
 
         _mController = GetComponentInParent<MasterController>();
+        health = GetComponentInParent<HealthSystem>();
+    }
+
+    private void Start()
+    {
+        health.OnDead += Health_OnDead;
     }
 
     // Update is called once per frame
@@ -146,7 +153,6 @@ public class PlayerController : MonoBehaviour
 
         miniGameStartTimer += Time.deltaTime;
 
-        Debug.Log(miniGameStartTimer);
         if (miniGameStartTimer >= miniGameTimer)
         {
             UpdateMosquitoState(MosquitoStates.Returning);
@@ -188,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
             case MosquitoStates.InMiniGame:
                 reactionBarObject.gameObject.SetActive(true);
-                reactionBarObject.StartMiniGame();
+                reactionBarObject.StartMiniGame(false);
                 break;
 
             case MosquitoStates.Returning:
@@ -202,6 +208,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Start mini game again with warned state if reaction bar is stopped at yellow bar first time
+    public void StartMiniGameWithWarning()
+    {
+        reactionBarObject.StartMiniGame(true);
+        miniGameStartTimer = 0;
+    }
+
     public void MiniGameCompleted(bool youWon)
     {
         if (youWon)
@@ -210,8 +223,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            health.Damage(100);
+
             UpdateMosquitoState(MosquitoStates.Returning);
         }
+    }
+
+    private void Health_OnDead(object sender, System.EventArgs eventArgs)
+    {
+        Destroy(transform.parent.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
