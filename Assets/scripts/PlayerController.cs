@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            health.Damage(100);
+            health.Damage(10);
 
             UpdateMosquitoState(MosquitoStates.Returning);
         }
