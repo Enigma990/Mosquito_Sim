@@ -87,10 +87,11 @@ public class PlayerController : MonoBehaviour
         if (!LevelManager.Instance.HasTarget())
             return;
 
+        float rootDistanceToNextTarget = Vector3.Distance(transform.parent.position, LevelManager.Instance.GetCurrentTargetPosition());
         float distanceToNextTarget = Vector3.Distance(transform.position, LevelManager.Instance.GetCurrentTargetPosition());
 
         // Check distance to next target and move towards it
-        if (distanceToNextTarget <= targetRange)
+        if (distanceToNextTarget <= targetRange || rootDistanceToNextTarget <= targetRange)
         {
             // Start Moving Towards target
             _mController.StopCart();// only stop logic after implementing states we can use start also (use W to move again).
@@ -166,6 +167,8 @@ public class PlayerController : MonoBehaviour
         {
             transform.localPosition = Vector3.zero;
 
+            transform.localRotation = Quaternion.identity;   
+
             UpdateMosquitoState(MosquitoStates.Moving);
 
             return;
@@ -174,6 +177,9 @@ public class PlayerController : MonoBehaviour
 
         transform.localPosition += moveDir * speedOfTrans * Time.deltaTime;
         transform.localEulerAngles = Vector3.zero;
+
+        transform.LookAt(moveDir);
+
     }
 
     private void UpdateMosquitoState(MosquitoStates mosquitoStates)
