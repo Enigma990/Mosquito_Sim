@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class BaseObstacle : MonoBehaviour
 {
     [SerializeField] private int damageAmount = 10;
 
@@ -18,11 +18,16 @@ public class Obstacle : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnPlayerEnterObstacleZone(Transform playerTransform)
     {
-        if (other.transform.parent.TryGetComponent(out HealthSystem health))
+        if (playerTransform.parent.TryGetComponent(out HealthSystem health))
         {
             health.Damage(damageAmount);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnPlayerEnterObstacleZone(other.transform);
     }
 }
