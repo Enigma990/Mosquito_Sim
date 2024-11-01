@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseObstacle : MonoBehaviour
 {
-    [SerializeField] private int damageAmount = 10;
+    [SerializeField] protected int damageAmount = 10;
 
     // Start is called before the first frame update
     void Start()

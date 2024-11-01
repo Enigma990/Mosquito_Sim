@@ -5,10 +5,17 @@ using UnityEngine;
 
 [Serializable]
 public struct LevelData
-{   
+{
+    [Header("Human Target")]
     public List<GameObject> humanTargetSpawnPoints;
     public int numOfHumanTarget;
     public GameObject humanTargetPrefab;
+
+    [Header("Obstacles")]
+    public GameObject electricLampPrefab;
+    public List<GameObject> electricLampSpawnPoints;
+    public int numOfElectricLamp;
+
 }
 
 public class LevelInfo : MonoBehaviour

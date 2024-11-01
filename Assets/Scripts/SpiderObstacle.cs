@@ -27,6 +27,14 @@ public class SpiderObstacle : BaseObstacle
 
             transform.LookAt(moveDir);
 
+
+            if (Vector3.Distance(playerTransform.position, transform.position) <= 1f)
+            {
+                if (playerTransform.parent.TryGetComponent(out HealthSystem health))
+                {
+                    health.Damage(damageAmount);
+                }
+            }
         }
     }
 
@@ -38,6 +46,11 @@ public class SpiderObstacle : BaseObstacle
 
             hasPlayer = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        hasPlayer = false;
     }
 
 }

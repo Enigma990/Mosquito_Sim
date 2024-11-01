@@ -504,8 +504,8 @@ Transform:
   m_GameObject: {fileID: 225901873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.5, y: 0, z: -0.000000014901161}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 340405589}
@@ -878,15 +878,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340405588}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.38268363, z: -0, w: 0.92387944}
-  m_LocalPosition: {x: -23.732233, y: 0, z: 2.8284256}
+  m_LocalRotation: {x: -0, y: 0.000000014901161, z: -0, w: 1}
+  m_LocalPosition: {x: -20.01992, y: 0, z: 12.826269}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1121199260}
   - {fileID: 225901874}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &340405590
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1762,7 +1762,7 @@ Transform:
   m_GameObject: {fileID: 843168447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.38268334, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -25.2448, y: 0, z: 6.0701737}
+  m_LocalPosition: {x: -24.360916, y: 0, z: 5.1862903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2188,8 +2188,8 @@ Transform:
   m_GameObject: {fileID: 1117670991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: -0.00000008568168}
-  m_LocalScale: {x: 3, y: 1, z: 1}
+  m_LocalPosition: {x: -2.5, y: 0, z: 0.00000021979213}
+  m_LocalScale: {x: 4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1459707434}
@@ -2698,7 +2698,7 @@ GameObject:
   - component: {fileID: 1240817444}
   - component: {fileID: 1240817445}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2745,7 +2745,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ad300ef92ac8d9047b53c106692ed3d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3637,15 +3637,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459707431}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.38268363, z: -0, w: 0.92387944}
-  m_LocalPosition: {x: -23.732233, y: 0, z: 2.8284256}
+  m_LocalRotation: {x: -0, y: -0.38268307, z: -0, w: 0.92387974}
+  m_LocalPosition: {x: -25.499992, y: 0, z: 23.688076}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1185153935}
   - {fileID: 1117670992}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1 &1477606497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3873,6 +3873,9 @@ MonoBehaviour:
     numOfHumanTarget: 2
     humanTargetPrefab: {fileID: 7904835037061188705, guid: 570b07029f177854199c18c12bc03a70,
       type: 3}
+    electricLampPrefab: {fileID: 0}
+    electricLampSpawnPoints: []
+    numOfElectricLamp: 0
   currentTarget: 0
 --- !u!1 &1573582976
 GameObject:
