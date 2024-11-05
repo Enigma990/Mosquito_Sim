@@ -2830,6 +2830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+  webPrefab: {fileID: 95953630782013619, guid: 1164b0a0179d7f14f9986a193da837e8, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -5559,7 +5560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cart: {fileID: 1984869232}
-  defaultSpeed: 8
+  defaultSpeed: 2
   speedTransitionTime: 0.5
   carStoped: 0
 --- !u!114 &1984869234
