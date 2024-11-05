@@ -10,16 +10,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text bloodVailText;
 
+    public int Gems {  get; private set; }
     public int Coins { get; private set; }
     public int BloodVail { get; private set; }
 
-    public event EventHandler<OnMiniGameEventArgs> OnMiniGameCompleted;
-
-    public class OnMiniGameEventArgs : EventArgs
-    {
-        public bool hasSucceeded;
-        public int amount;
-    }
 
     private void Awake()
     {
@@ -43,6 +37,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void AddGems(int amount)
+    {
+        Gems += amount;
     }
 
     private void AddCoin(int amount)

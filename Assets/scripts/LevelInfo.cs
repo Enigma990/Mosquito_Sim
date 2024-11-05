@@ -49,6 +49,8 @@ public class LevelInfo : MonoBehaviour
         SpawnHumanTarget();
     }
 
+    #region Spawner Logic
+
     private void SpawnHumanTarget()
     {
         humanTargetArray = new GameObject[levelData.numOfHumanTarget];
@@ -63,6 +65,8 @@ public class LevelInfo : MonoBehaviour
             }
         }
     }
+
+    #region Obstacles
 
     private void SpawnElectricLamps()
     {
@@ -123,6 +127,9 @@ public class LevelInfo : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #endregion
 
     public Vector3 GetCurrentTargetPosition()
     {
