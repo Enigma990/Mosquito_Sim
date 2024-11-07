@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance {  get; private set; }
 
+    [SerializeField] private Joystick joystick;
+
     [SerializeField] private float targetRange = 5f;
     [SerializeField] private float miniGameRange = 0.5f;
     [SerializeField] private float miniGameTimer = 3f;
@@ -101,8 +103,17 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        float movePosX = transform.localPosition.x + Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        float movePosY = transform.localPosition.y + Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float movePosX;
+        float movePosY;
+#if UNITY_EDITOR
+
+        movePosX = transform.localPosition.x + Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        movePosY = transform.localPosition.y + Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+
+#endif
+
+        movePosX = joystick.Horizontal * moveSpeed * Time.deltaTime;
+        movePosY = joystick.Vertical * moveSpeed * Time.deltaTime;
 
         // Check max right Position
         if (movePosX > 3.25f)
