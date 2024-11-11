@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         health.OnDead += Health_OnDead;
+        joystick.enabled = true;
     }
 
     // Update is called once per frame
@@ -105,15 +106,16 @@ public class PlayerController : MonoBehaviour
     {
         float movePosX;
         float movePosY;
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 
-        movePosX = transform.localPosition.x + Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        movePosY = transform.localPosition.y + Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+//        movePosX = transform.localPosition.x + Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+//        movePosY = transform.localPosition.y + Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-#endif
+//#endif
 
-        movePosX = joystick.Horizontal * moveSpeed * Time.deltaTime;
-        movePosY = joystick.Vertical * moveSpeed * Time.deltaTime;
+        movePosX = transform.localPosition.x + joystick.Horizontal * moveSpeed * Time.deltaTime;
+        movePosY = transform.localPosition.y + joystick.Vertical * moveSpeed * Time.deltaTime;
+
 
         // Check max right Position
         if (movePosX > 3.25f)
