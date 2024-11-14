@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -55,14 +56,19 @@ public class LevelInfo : MonoBehaviour
     {
         humanTargetArray = new GameObject[levelData.numOfHumanTarget];
 
+        System.Random rng = new System.Random();
+        List<GameObject> randomSpawnPoints = levelData.humanTargetSpawnPoints.OrderBy(x => rng.Next()).ToList();
+
         for (int i = 0; i < levelData.numOfHumanTarget; i++)
         {
-            if (levelData.humanTargetSpawnPoints.Count > 0)
-            {
-                int index = UnityEngine.Random.Range(0, levelData.humanTargetSpawnPoints.Count);
-                humanTargetArray[i] = Instantiate(levelData.humanTargetPrefab, levelData.humanTargetSpawnPoints[index].transform);
-                levelData.humanTargetSpawnPoints.RemoveAt(index);
-            }
+            //if (levelData.humanTargetSpawnPoints.Count > 0)
+            //{
+            //    //int index = UnityEngine.Random.Range(0, levelData.humanTargetSpawnPoints.Count);
+            //    //humanTargetArray[i] = Instantiate(levelData.humanTargetPrefab, levelData.humanTargetSpawnPoints[index].transform);
+            //    //levelData.humanTargetSpawnPoints.RemoveAt(index);
+            //}
+
+            humanTargetArray[i] = Instantiate(levelData.humanTargetPrefab, randomSpawnPoints[i].transform);
         }
     }
 

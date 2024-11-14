@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class MasterController : MonoBehaviour
 {
+    public event EventHandler OnPathFinished;
+
     public CinemachineDollyCart cart;
 
     public float defaultSpeed;
@@ -28,6 +31,11 @@ public class MasterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             StopCart();
+        }
+
+        if (cart.m_Position >= cart.m_Path.PathLength)
+        {
+            OnPathFinished?.Invoke(this, EventArgs.Empty);
         }
     }
 

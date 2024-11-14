@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,14 +10,18 @@ public enum MosquitoStates
     EnterMiniGame,
     InMiniGame,
     Returning,
-    Dead
+    Dead,
+    Completed
 }
 
 public class PlayerController : MonoBehaviour
 {
+    public event EventHandler<bool> OnGameFinished;
+
     public static PlayerController Instance {  get; private set; }
 
     [SerializeField] private Joystick joystick;
+    [SerializeField] private Canvas joystickCanvas; 
 
     [SerializeField] private float targetRange = 5f;
     [SerializeField] private float miniGameRange = 0.5f;
@@ -54,6 +59,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _mController.OnPathFinished += MasterController_OnPathFinished;
+
         health.OnDead += Health_OnDead;
         joystick.enabled = true;
     }
@@ -82,16 +89,23 @@ public class PlayerController : MonoBehaviour
 
             case MosquitoStates.Dead:   
                 break;
+
+            case MosquitoStates.Completed:
+                break;
         }
     }
 
     private void CheckDistanceToTarget()
     {
+        Debug.Log(LevelManager.Instance.GetCurrentTargetPosition());
+
+
         if (!LevelManager.Instance.HasTarget())
             return;
 
         float rootDistanceToNextTarget = Vector3.Distance(transform.parent.position, LevelManager.Instance.GetCurrentTargetPosition());
         float distanceToNextTarget = Vector3.Distance(transform.position, LevelManager.Instance.GetCurrentTargetPosition());
+
 
         // Check distance to next target and move towards it
         if (distanceToNextTarget <= targetRange || rootDistanceToNextTarget <= targetRange)
@@ -203,12 +217,16 @@ public class PlayerController : MonoBehaviour
         {
             case MosquitoStates.Moving:
                 _mController.StartCart();
+                joystick.enabled = true;
+                joystickCanvas.enabled = true;
                 break;
 
             case MosquitoStates.EnterMiniGame:
                 //reactionBarObject.gameObject.SetActive(true);
                 //reactionBarObject.StartMiniGame();
                 miniGameStartTimer = 0f;
+                joystick.enabled = false;
+                joystickCanvas.enabled = false;
                 break;
 
             case MosquitoStates.InMiniGame:
@@ -223,6 +241,13 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case MosquitoStates.Dead:
+                OnGameFinished?.Invoke(this, false);
+                joystick.enabled = false;
+                break;
+
+            case MosquitoStates.Completed:
+                OnGameFinished?.Invoke(this, true);
+                joystick.enabled = false;
                 break;
         }
     }
@@ -246,6 +271,11 @@ public class PlayerController : MonoBehaviour
 
             UpdateMosquitoState(MosquitoStates.Returning);
         }
+    }
+
+    private void MasterController_OnPathFinished(object sender, EventArgs eventArgs)
+    {
+        UpdateMosquitoState(MosquitoStates.Completed);
     }
 
     private void Health_OnDead(object sender, System.EventArgs eventArgs)
