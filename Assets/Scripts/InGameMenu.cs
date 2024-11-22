@@ -29,6 +29,9 @@ public class InGameMenu : MonoBehaviour
             gameCompletedPanel.SetActive(true);
         else
             gameOverPanel.SetActive(true);
+
+
+        Camera.main.transform.SetParent(null);
     }
 
     private void BackToMenu()

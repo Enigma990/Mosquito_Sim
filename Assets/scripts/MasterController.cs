@@ -24,7 +24,7 @@ public class MasterController : MonoBehaviour
     void Update()
     {
         // Testing
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             StartCart();
         }
@@ -59,7 +59,7 @@ public class MasterController : MonoBehaviour
     {
         if (!carStoped) return; // to stop repeating corotine
         StopAllCoroutines();
-        StartCoroutine(Lerp(0,defaultSpeed, speedTransitionTime));
+        StartCoroutine(Lerp(0, defaultSpeed, speedTransitionTime));
         carStoped = false;
     }
     [ContextMenu("StopCart")]

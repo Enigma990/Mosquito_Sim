@@ -243,11 +243,13 @@ public class PlayerController : MonoBehaviour
             case MosquitoStates.Dead:
                 OnGameFinished?.Invoke(this, false);
                 joystick.enabled = false;
+                _mController.StopCart();
                 break;
 
             case MosquitoStates.Completed:
                 OnGameFinished?.Invoke(this, true);
                 joystick.enabled = false;
+                GameManager.Instance.AddCoin(coinsCollected);
                 break;
         }
     }
@@ -280,7 +282,11 @@ public class PlayerController : MonoBehaviour
 
     private void Health_OnDead(object sender, System.EventArgs eventArgs)
     {
-        Destroy(transform.parent.gameObject);
+
+        UpdateMosquitoState(MosquitoStates.Dead);
+        //transform.parent.gameObject.SetActive(false);
+        //Destroy(transform.parent.gameObject);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -291,7 +297,8 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
 
             coinsCollected += 1;
-            coinsText.text =coinsCollected.ToString();
+            coinsText.text = coinsCollected.ToString();
+
         }
 
         if (other.CompareTag("Rings"))

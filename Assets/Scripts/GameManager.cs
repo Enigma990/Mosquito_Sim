@@ -1,3 +1,4 @@
+using PlayFab;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,14 +40,16 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void AddGems(int amount)
+    public void AddGems(int amount)
     {
         Gems += amount;
     }
 
-    private void AddCoin(int amount)
+    public void AddCoin(int amount)
     {
         Coins += amount;
+
+        DatabaseManager.Instance.AddCurrency();
     }
 
     private void AddBloodVail(int amount)
