@@ -71,4 +71,10 @@ public class MasterController : MonoBehaviour
         StartCoroutine(Lerp(defaultSpeed, 0, speedTransitionTime));
         carStoped = true;
     }
+
+    public void SetMasterSpeed(float speed)
+    {
+        defaultSpeed += speed;
+        cart.m_Speed = defaultSpeed;
+    }
 }

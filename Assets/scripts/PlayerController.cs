@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour
 
 
     private GameObject nextTarget;
-    private MasterController _mController;
+    private MasterController masterController;
+    private PlayerStats playerStats;
 
     private MosquitoStates currentState;
 
@@ -53,16 +54,31 @@ public class PlayerController : MonoBehaviour
         }
         Instance = this;
 
-        _mController = GetComponentInParent<MasterController>();
+        masterController = GetComponentInParent<MasterController>();
         health = GetComponentInParent<HealthSystem>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     private void Start()
     {
-        _mController.OnPathFinished += MasterController_OnPathFinished;
+        masterController.OnPathFinished += MasterController_OnPathFinished;
 
         health.OnDead += Health_OnDead;
+        health.SetArmourAmount(playerStats.GetArmourAmount());
+
         joystick.enabled = true;
+
+        float speedModifier = playerStats.GetSpeedAmount() * 0.2f;
+        if(speedModifier > 2)
+        {
+            speedModifier = 2;
+        }
+
+
+        masterController.SetMasterSpeed(speedModifier);
+        moveSpeed += speedModifier;
+        Debug.Log(playerStats.GetSpeedAmount());
+        Debug.Log(moveSpeed);
     }
 
     // Update is called once per frame
@@ -111,7 +127,7 @@ public class PlayerController : MonoBehaviour
         if (distanceToNextTarget <= targetRange || rootDistanceToNextTarget <= targetRange)
         {
             // Start Moving Towards target
-            _mController.StopCart();// only stop logic after implementing states we can use start also (use W to move again).
+            masterController.StopCart();// only stop logic after implementing states we can use start also (use W to move again).
             UpdateMosquitoState(MosquitoStates.EnterMiniGame);
         }
     }
@@ -132,25 +148,25 @@ public class PlayerController : MonoBehaviour
 
 
         // Check max right Position
-        if (movePosX > 3.25f)
+        if (movePosX > 1.25f)
         {
-            movePosX = 3.25f;
+            movePosX = 1.25f;
         }
 
         // Check max left position
-        if (movePosX < -3.25f)
+        if (movePosX < -1.25f)
         {
-            movePosX = -3.25f;
+            movePosX = -1.25f;
         }
 
-        if (movePosY > 3.25f)
+        if (movePosY > 1.25f)
         {
-            movePosY = 3.25f;
+            movePosY = 1.25f;
         }
 
-        if (movePosY < -3.25f)
+        if (movePosY < -1.25f)
         {
-            movePosY = -3.25f;
+            movePosY = -1.25f;
         }
 
         transform.localPosition = new Vector3(movePosX,
@@ -216,7 +232,7 @@ public class PlayerController : MonoBehaviour
         switch (currentState)
         {
             case MosquitoStates.Moving:
-                _mController.StartCart();
+                masterController.StartCart();
                 joystick.enabled = true;
                 joystickCanvas.enabled = true;
                 break;
@@ -243,7 +259,7 @@ public class PlayerController : MonoBehaviour
             case MosquitoStates.Dead:
                 OnGameFinished?.Invoke(this, false);
                 joystick.enabled = false;
-                _mController.StopCart();
+                masterController.StopCart();
                 break;
 
             case MosquitoStates.Completed:
@@ -310,4 +326,6 @@ public class PlayerController : MonoBehaviour
             coinsText.text = coinsCollected.ToString();
         }
     }
+
+    public int GetBloodVailAmount() => playerStats.GetBloodAmount();
 }

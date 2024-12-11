@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void MiniGameCompleted(int amount)
     {
-        AddBloodVail(amount);
+        AddBloodVail(amount + PlayerController.Instance.GetBloodVailAmount());
     }
 
 }
