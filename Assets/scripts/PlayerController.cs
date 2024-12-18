@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float miniGameTimer = 3f;
     [SerializeField] private float speedOfTrans = 2f;
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float maxMoveDistance = 1.25f;
 
     [SerializeField] private TMP_Text coinsText;
     private int coinsCollected;
@@ -148,25 +149,25 @@ public class PlayerController : MonoBehaviour
 
 
         // Check max right Position
-        if (movePosX > 1.25f)
+        if (movePosX > maxMoveDistance)
         {
-            movePosX = 1.25f;
+            movePosX = maxMoveDistance;
         }
 
         // Check max left position
-        if (movePosX < -1.25f)
+        if (movePosX < -maxMoveDistance)
         {
-            movePosX = -1.25f;
+            movePosX = -maxMoveDistance;
         }
 
-        if (movePosY > 1.25f)
+        if (movePosY > maxMoveDistance)
         {
-            movePosY = 1.25f;
+            movePosY = maxMoveDistance;
         }
 
-        if (movePosY < -1.25f)
+        if (movePosY < -maxMoveDistance)
         {
-            movePosY = -1.25f;
+            movePosY = -maxMoveDistance;
         }
 
         transform.localPosition = new Vector3(movePosX,
