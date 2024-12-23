@@ -33,4 +33,6 @@ public class PlayerStats : MonoBehaviour
 
         return speed;
     }
+
+    public GameObject GetSelectedMosquito() => StatsManager.Instance.GetSelectedMosquito();
 }

@@ -196,7 +196,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "ac9bc73ff2ea4abcb2146c4dab8e0497"
+                    "m_Id": "d69135d4ef2542f5b7fa8f2df672c9f2"
                 },
                 "m_SlotId": 0
             }
@@ -267,20 +267,6 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "599e667499444c4ca70fb6c01bf05bb7"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "599e667499444c4ca70fb6c01bf05bb7"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "d69135d4ef2542f5b7fa8f2df672c9f2"
                 },
                 "m_SlotId": 0
             }
@@ -575,7 +561,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":2200864829188894753,\"guid\":\"11aae11cd4213694cb66b4ae32090b24\",\"type\":3}}",
             "m_Guid": ""
         },
         "preventRotation": false

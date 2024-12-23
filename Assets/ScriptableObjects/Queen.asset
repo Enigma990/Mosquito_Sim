@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Queen
   m_EditorClassIdentifier: 
   mosquitoType: 2
+  mosquitoPrefab: {fileID: 2949430765695627446, guid: b9348aab30c28f645a0c41967173fb78,
+    type: 3}
   armourAmount: 0
   speed: 0
   stingMeter: 0

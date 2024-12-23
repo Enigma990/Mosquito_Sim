@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float maxMoveDistance = 1.25f;
 
+    [SerializeField] private Transform mosquitoVisualHolder;
+
     [SerializeField] private TMP_Text coinsText;
     private int coinsCollected;
 
@@ -68,6 +70,8 @@ public class PlayerController : MonoBehaviour
         health.SetArmourAmount(playerStats.GetArmourAmount());
 
         joystick.enabled = true;
+
+        Instantiate(playerStats.GetSelectedMosquito(), mosquitoVisualHolder);
 
         float speedModifier = playerStats.GetSpeedAmount() * 0.2f;
         if(speedModifier > 2)

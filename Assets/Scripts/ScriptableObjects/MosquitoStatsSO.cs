@@ -14,6 +14,8 @@ public class MosquitoStatsSO : ScriptableObject
 {
     public MosquitoType mosquitoType;
 
+    public GameObject mosquitoPrefab;
+
     public int armourAmount;
     public int speed;
     public int stingMeter;

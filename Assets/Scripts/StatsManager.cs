@@ -11,6 +11,8 @@ public class StatsManager : MonoBehaviour
     private int stingMeter = 0;
     private int bloodAmount = 0;
 
+    private GameObject selectedMosquito;
+
     [SerializeField] private MosquitoStatsSO[] mosquitoStatsSO;
 
     private void Awake()
@@ -29,6 +31,7 @@ public class StatsManager : MonoBehaviour
                 armourAmount += mosquitoStatsSO[0].armourAmount;
                 stingMeter += mosquitoStatsSO[0].stingMeter;
                 bloodAmount += mosquitoStatsSO[0].bloodAmount;
+                selectedMosquito = mosquitoStatsSO[0].mosquitoPrefab;
                 break;
 
             case MosquitoType.Assassin:
@@ -36,6 +39,7 @@ public class StatsManager : MonoBehaviour
                 armourAmount += mosquitoStatsSO[1].armourAmount;
                 stingMeter += mosquitoStatsSO[1].stingMeter;
                 bloodAmount += mosquitoStatsSO[1].bloodAmount;
+                selectedMosquito = mosquitoStatsSO[1].mosquitoPrefab;
                 break;
 
             case MosquitoType.Warrior:
@@ -43,6 +47,7 @@ public class StatsManager : MonoBehaviour
                 armourAmount += mosquitoStatsSO[2].armourAmount;
                 stingMeter += mosquitoStatsSO[2].stingMeter;
                 bloodAmount += mosquitoStatsSO[2].bloodAmount; 
+                selectedMosquito = mosquitoStatsSO[2].mosquitoPrefab;
                 break;
         }
     }
@@ -68,4 +73,6 @@ public class StatsManager : MonoBehaviour
     public int GetSpeed() => speed;
     public int GetStingMeter() => stingMeter;
     public int GetBloodAmount() => bloodAmount;
+
+    public GameObject GetSelectedMosquito() => selectedMosquito;
 }
