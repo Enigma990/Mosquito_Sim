@@ -17,6 +17,25 @@ public class PlayerStats : MonoBehaviour
         bloodAmount += StatsManager.Instance.GetBloodAmount();
     }
 
+    public void UpdateStats(PowerUpType powerUpType, int amount)
+    {
+        switch (powerUpType)
+        {
+            case PowerUpType.Armour:
+                armourAmount += amount;
+                break;
+            case PowerUpType.Speed:
+                speed += amount;
+                break;
+            case PowerUpType.StingMeter:
+                stingMeter += amount;
+                break;
+            case PowerUpType.BloodAmount:
+                bloodAmount += amount;
+                break;  
+        }
+    }
+
     public int GetArmourAmount()
     {
         armourAmount += StatsManager.Instance.GetArmourAmount();
