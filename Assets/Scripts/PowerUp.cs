@@ -17,12 +17,12 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PlayerStats playerStats))
-        {
-            playerStats.UpdateStats(powerUpType, powerUpValue);
-        }
+        //if (other.TryGetComponent(out PlayerStats playerStats))
+        //{
+        //    playerStats.ActivatePowerUp(powerUpType, powerUpValue);
+        //}
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 }

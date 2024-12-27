@@ -12,6 +12,12 @@ public class InGameMenu : MonoBehaviour
     [SerializeField] private Button completedContinueBtn;
     [SerializeField] private Button overContinueBtn;
 
+    [Header("PowerUps")]
+    [SerializeField] private Button armourButton;
+    [SerializeField] private Button speedButton;
+    [SerializeField] private Button stingMeterButton;
+    [SerializeField] private Button bloodAmountButton;
+
     void Start()
     {
         PlayerController.Instance.OnGameFinished += PlayerController_OnGameFinished;
@@ -21,6 +27,24 @@ public class InGameMenu : MonoBehaviour
 
         gameCompletedPanel.SetActive(false);
         gameOverPanel.SetActive(false);
+
+        armourButton.onClick.AddListener(() =>
+        {
+            PlayerController.Instance.UsePowerUp(PowerUpType.Armour, 2);
+        });
+        speedButton.onClick.AddListener(() =>
+        {
+            PlayerController.Instance.UsePowerUp(PowerUpType.Speed, 2);
+        });
+        stingMeterButton.onClick.AddListener(() =>
+        {
+            PlayerController.Instance.UsePowerUp(PowerUpType.StingMeter, 2);
+        });
+        bloodAmountButton.onClick.AddListener(() =>
+        {
+            PlayerController.Instance.UsePowerUp(PowerUpType.BloodAmount, 2);
+        });
+
     }
 
     private void PlayerController_OnGameFinished(object sender, bool gameCompeleted)

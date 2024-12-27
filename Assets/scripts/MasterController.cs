@@ -74,7 +74,7 @@ public class MasterController : MonoBehaviour
 
     public void SetMasterSpeed(float speed)
     {
-        defaultSpeed += speed;
+        defaultSpeed = speed;
         cart.m_Speed = defaultSpeed;
     }
 }

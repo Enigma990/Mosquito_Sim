@@ -67,23 +67,13 @@ public class PlayerController : MonoBehaviour
         masterController.OnPathFinished += MasterController_OnPathFinished;
 
         health.OnDead += Health_OnDead;
-        health.SetArmourAmount(playerStats.GetArmourAmount());
 
         joystick.enabled = true;
 
         Instantiate(playerStats.GetSelectedMosquito(), mosquitoVisualHolder);
 
-        float speedModifier = playerStats.GetSpeedAmount() * 0.2f;
-        if(speedModifier > 2)
-        {
-            speedModifier = 2;
-        }
+        SetStats();
 
-
-        masterController.SetMasterSpeed(speedModifier);
-        moveSpeed += speedModifier;
-        Debug.Log(playerStats.GetSpeedAmount());
-        Debug.Log(moveSpeed);
     }
 
     // Update is called once per frame
@@ -116,11 +106,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void SetStats()
+    {
+        health.SetArmourAmount(playerStats.GetArmourAmount());
+
+        float speedModifier = playerStats.GetSpeedAmount();
+        if (speedModifier > 2)
+        {
+            speedModifier = 2;
+        }
+
+
+        masterController.SetMasterSpeed(speedModifier);
+        moveSpeed = speedModifier;
+    }
+
     private void CheckDistanceToTarget()
     {
-        Debug.Log(LevelManager.Instance.GetCurrentTargetPosition());
-
-
         if (!LevelManager.Instance.HasTarget())
             return;
 
@@ -308,6 +310,11 @@ public class PlayerController : MonoBehaviour
         //transform.parent.gameObject.SetActive(false);
         //Destroy(transform.parent.gameObject);
 
+    }
+
+    public void UsePowerUp(PowerUpType powerUpType, int amount)
+    {
+        playerStats.ActivatePowerUp(powerUpType, amount, SetStats);
     }
 
     private void OnTriggerEnter(Collider other)

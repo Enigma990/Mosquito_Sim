@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     private int armourAmount;
-    private int speed;
+    private float speed = 1;
     private int stingMeter;
     private int bloodAmount;
 
@@ -17,7 +18,7 @@ public class PlayerStats : MonoBehaviour
         bloodAmount += StatsManager.Instance.GetBloodAmount();
     }
 
-    public void UpdateStats(PowerUpType powerUpType, int amount)
+    public void ActivatePowerUp(PowerUpType powerUpType, int amount, Action UpdatePlayerStatsAction)
     {
         switch (powerUpType)
         {
@@ -25,7 +26,7 @@ public class PlayerStats : MonoBehaviour
                 armourAmount += amount;
                 break;
             case PowerUpType.Speed:
-                speed += amount;
+                speed += (amount * 0.1f);
                 break;
             case PowerUpType.StingMeter:
                 stingMeter += amount;
@@ -34,6 +35,33 @@ public class PlayerStats : MonoBehaviour
                 bloodAmount += amount;
                 break;  
         }
+
+        UpdatePlayerStatsAction();
+        StartCoroutine(DeactivatePowerUp(powerUpType, amount, UpdatePlayerStatsAction)); 
+    }
+
+    private IEnumerator DeactivatePowerUp(PowerUpType powerUpType, int amount, Action UpdatePlayerStatsAction)
+    {
+        yield return new WaitForSeconds(2f);
+
+        switch (powerUpType)
+        {
+            case PowerUpType.Armour:
+                armourAmount -= amount;
+                break;
+            case PowerUpType.Speed:
+                speed -= (amount * 0.1f);
+                break;
+            case PowerUpType.StingMeter:
+                stingMeter -= amount;
+                break;
+            case PowerUpType.BloodAmount:
+                bloodAmount -= amount;
+                break;
+        }
+
+
+        UpdatePlayerStatsAction();
     }
 
     public int GetArmourAmount()
@@ -46,7 +74,7 @@ public class PlayerStats : MonoBehaviour
         bloodAmount += StatsManager.Instance.GetBloodAmount();
         return bloodAmount;
     }
-    public int GetSpeedAmount()
+    public float GetSpeedAmount()
     {
         speed += StatsManager.Instance.GetSpeed();
 
