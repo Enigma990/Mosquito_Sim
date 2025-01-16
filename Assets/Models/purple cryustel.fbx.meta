@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 644f47a6c6c08a54bacbe888af77d1e0
+guid: 5b92bf6386e2ede42a1ee1413949a97b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Soilder_M
-    second: {fileID: 2100000, guid: 812857ace56932a4ebf3eaa2b987ab4b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _glasss1
-    second: {fileID: 2100000, guid: 0bb22c3713b6bca469ce15b2c7e6d212, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
