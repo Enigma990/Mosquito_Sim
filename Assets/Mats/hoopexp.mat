@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: customGlass
+  m_Name: hoopexp
   m_Shader: {fileID: -6465566751694194690, guid: bdd267bb7f97133459361a5261ba6408,
     type: 3}
   m_Parent: {fileID: 0}
@@ -51,19 +51,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_18854F8C: 0.036
-    - Vector1_28BC39B5: 0
-    - Vector1_40385CE1: 0.6
-    - Vector1_48BDE471: 0.061
+    - Vector1_18854F8C: 1
+    - Vector1_28BC39B5: 0.207
+    - Vector1_40385CE1: 1.4
+    - Vector1_48BDE471: 0.259
     - Vector1_66425DE2: 0
-    - Vector1_7C2E78E4: 0.5
-    - Vector1_A0DB3845: 1
-    - Vector1_F1294C90: 0.37
+    - Vector1_7C2E78E4: 0.808
+    - Vector1_A0DB3845: 0.787
+    - Vector1_F1294C90: 0.43
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - Color_9B881ED6: {r: 0.19339624, g: 0.19339624, b: 0.19339624, a: 1}
-    - Color_BED8F987: {r: 0, g: 0.000007489628, b: 0.0007152499, a: 0.45490196}
-    - Color_CA4EAD0D: {r: 1, g: 1, b: 1, a: 1}
-    - Color_E9CFA916: {r: 0.20569338, g: 0.15419188, b: 0.5188679, a: 0.1647059}
+    - Color_9B881ED6: {r: 9.5604725, g: 16.603785, b: 0, a: 1}
+    - Color_BED8F987: {r: 0.254717, g: 0.0012014981, b: 0.02254639, a: 1}
+    - Color_CA4EAD0D: {r: 0.929, g: 0.52163464, b: 0, a: 1}
+    - Color_E9CFA916: {r: 0.7176471, g: 0, b: 0.17348827, a: 0.1647059}
   m_BuildTextureStacks: []

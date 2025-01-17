@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-251618706117528700
+--- !u!114 &-3797420059205323409
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: customGlass
-  m_Shader: {fileID: -6465566751694194690, guid: bdd267bb7f97133459361a5261ba6408,
+  m_Name: characterMat
+  m_Shader: {fileID: -6465566751694194690, guid: b1ffbdcc6611a8d49805d01ee15d2ca8,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -30,13 +30,25 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: ea6dc7e564c187547a992c5ba7e23a67, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LitMask_use_red_channel_to_mask_lights:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: ea6dc7e564c187547a992c5ba7e23a67, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,19 +63,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_18854F8C: 0.036
-    - Vector1_28BC39B5: 0
-    - Vector1_40385CE1: 0.6
-    - Vector1_48BDE471: 0.061
-    - Vector1_66425DE2: 0
-    - Vector1_7C2E78E4: 0.5
-    - Vector1_A0DB3845: 1
-    - Vector1_F1294C90: 0.37
+    - _OutlineWidth: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RimPower: 0.61
+    - _RimSize: 0.42
+    - _RimStep: 0
+    - _RimStepSmooth: 0
+    - _Rim_Light_Brightness: 10.73
+    - _ShadowStep: 0.873
+    - _ShadowStepSmooth: 0.233
+    - _SpecularStep: 0.375
+    - _SpecularStepSmooth: 0
+    - _Toon_Ramp_Offset: 0.7
+    - _Toon_Ramp_Smoothness: 0
     m_Colors:
-    - Color_9B881ED6: {r: 0.19339624, g: 0.19339624, b: 0.19339624, a: 1}
-    - Color_BED8F987: {r: 0, g: 0.000007489628, b: 0.0007152499, a: 0.45490196}
-    - Color_CA4EAD0D: {r: 1, g: 1, b: 1, a: 1}
-    - Color_E9CFA916: {r: 0.20569338, g: 0.15419188, b: 0.5188679, a: 0.1647059}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 0.1716358, g: 0.2022784, b: 0.2735849, a: 1}
+    - _SpecularColor: {r: 0.016687438, g: 0.028301895, b: 0.028301895, a: 1}
+    - _Toon_Ramp_Tinting: {r: 0.51775545, g: 0.56002074, b: 0.6132076, a: 0}
   m_BuildTextureStacks: []
