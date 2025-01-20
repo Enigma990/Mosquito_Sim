@@ -33,7 +33,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform mosquitoVisualHolder;
 
     [SerializeField] private TMP_Text coinsText;
+    [SerializeField] private TMP_Text gemsText;
     private int coinsCollected;
+    private int gemsCollected;
 
 
     private float miniGameStartTimer = 0;
@@ -110,11 +112,12 @@ public class PlayerController : MonoBehaviour
     {
         health.SetArmourAmount(playerStats.GetArmourAmount());
 
-        float speedModifier = playerStats.GetSpeedAmount();
+        float speedModifier = playerStats.GetSpeedAmount() * 0.5f;
         if (speedModifier > 2)
         {
             speedModifier = 2;
         }
+
 
 
         masterController.SetMasterSpeed(speedModifier);
@@ -176,8 +179,9 @@ public class PlayerController : MonoBehaviour
             movePosY = -maxMoveDistance;
         }
 
-        transform.localPosition = new Vector3(movePosX,
-            movePosY, transform.localPosition.z);
+        Vector3 inputVector = new Vector3(movePosX, movePosY, transform.localPosition.z);
+
+        transform.localPosition = inputVector;
 
     }
 
@@ -336,6 +340,15 @@ public class PlayerController : MonoBehaviour
 
             coinsCollected += 10;
             coinsText.text = coinsCollected.ToString();
+        }
+
+        if (other.CompareTag("Gems"))
+        {
+            Debug.Log(other.gameObject);
+            Destroy(other.gameObject);
+
+            gemsCollected += 10;
+            gemsText.text = gemsCollected.ToString();
         }
     }
 

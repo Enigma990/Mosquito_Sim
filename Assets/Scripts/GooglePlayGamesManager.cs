@@ -13,12 +13,19 @@ public class GooglePlayGamesManager : MonoBehaviour
 
     private void Awake()
     {
+#if !UNITY_STANDALONE_WIN
+
         PlayGamesPlatform.Activate();
         LoginGooglePlayGames();
+
+#endif
     }
 
     public void LoginGooglePlayGames()
     {
+
+#if !UNITY_STANDALONE_WIN
+
         PlayGamesPlatform.Instance.Authenticate((success) =>
         {
             if (success == SignInStatus.Success)
@@ -38,6 +45,8 @@ public class GooglePlayGamesManager : MonoBehaviour
                 Debug.Log("Login Unsuccessful");
             }
         });
+
+#endif
     }
 
     //async Task SignInWithGooglePlayGamesAsync(string authCode)
