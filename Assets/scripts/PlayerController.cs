@@ -276,7 +276,8 @@ public class PlayerController : MonoBehaviour
             case MosquitoStates.Completed:
                 OnGameFinished?.Invoke(this, true);
                 joystick.enabled = false;
-                GameManager.Instance.AddCoin(coinsCollected);
+                //GameManager.Instance.AddCoin(coinsCollected);
+                GameManager.Instance.GameCompleted();
                 break;
         }
     }
@@ -331,6 +332,8 @@ public class PlayerController : MonoBehaviour
             coinsCollected += 1;
             coinsText.text = coinsCollected.ToString();
 
+            GameManager.Instance.AddCoin(1);
+
         }
 
         if (other.CompareTag("Rings"))
@@ -340,6 +343,7 @@ public class PlayerController : MonoBehaviour
 
             coinsCollected += 10;
             coinsText.text = coinsCollected.ToString();
+            GameManager.Instance.AddCoin(10);
         }
 
         if (other.CompareTag("Gems"))
@@ -347,8 +351,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log(other.gameObject);
             Destroy(other.gameObject);
 
-            gemsCollected += 10;
+            gemsCollected += 1;
             gemsText.text = gemsCollected.ToString();
+            GameManager.Instance.AddGems(1);
         }
     }
 

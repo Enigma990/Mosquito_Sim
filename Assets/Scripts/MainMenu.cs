@@ -39,25 +39,25 @@ public class MainMenu : MonoBehaviour
     {
         mosquitoSelectCanvas.SetActive(false);
 
-        stingerUpgradeButton.onClick.AddListener(() =>
-        {
-            StatsManager.Instance.UpgradeStingMeter();
-            UpdateText();
-        });
+        //stingerUpgradeButton.onClick.AddListener(() =>
+        //{
+        //    StatsManager.Instance.UpgradeStingMeter();
+        //    UpdateText();
+        //});
 
-        speedUpgradeButton.onClick.AddListener(() =>
-        {
-            StatsManager.Instance.UpgradeSpeed();
-            UpdateText();
-        });
+        //speedUpgradeButton.onClick.AddListener(() =>
+        //{
+        //    StatsManager.Instance.UpgradeSpeed();
+        //    UpdateText();
+        //});
 
-        stealthUpgradeButton.onClick.AddListener(() =>
-        {
-            StatsManager.Instance.UpgradeArmour();
-            UpdateText();
-        });
+        //stealthUpgradeButton.onClick.AddListener(() =>
+        //{
+        //    StatsManager.Instance.UpgradeArmour();
+        //    UpdateText();
+        //});
 
-        UpdateText();
+        //UpdateText();
     }
 
     private void OnDestroy()

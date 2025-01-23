@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,13 @@ public class InGameMenu : MonoBehaviour
 
     [SerializeField] private Button completedContinueBtn;
     [SerializeField] private Button overContinueBtn;
+
+    [SerializeField] private Button pauseButton;
+    [SerializeField] private GameObject pauseMenu;
+
+    [Header("In Game UI")]
+    [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private TextMeshProUGUI gemsText;
 
     [Header("PowerUps")]
     [SerializeField] private Button armourButton;
@@ -45,6 +53,10 @@ public class InGameMenu : MonoBehaviour
             PlayerController.Instance.UsePowerUp(PowerUpType.BloodAmount, 2);
         });
 
+        pauseButton.onClick.AddListener(() =>
+        {
+            OpenPauseMenu();
+        });
     }
 
     private void PlayerController_OnGameFinished(object sender, bool gameCompeleted)
@@ -63,4 +75,18 @@ public class InGameMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    private void OpenPauseMenu()
+    {
+        pauseMenu.SetActive(true);
+    }
+
+    public void UpdateGemsText()
+    {
+
+    }
+
+    public void UpdateCoinsText()
+    {
+
+    }
 }

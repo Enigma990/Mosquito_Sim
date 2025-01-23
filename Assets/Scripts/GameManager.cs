@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     {
         Coins += amount;
 
-        DatabaseManager.Instance.AddCurrency();
     }
 
     private void AddBloodVail(int amount)
@@ -62,6 +61,11 @@ public class GameManager : MonoBehaviour
     public void MiniGameCompleted(int amount)
     {
         AddBloodVail(amount + PlayerController.Instance.GetBloodVailAmount());
+    }
+
+    public void GameCompleted()
+    {
+        DatabaseManager.Instance.AddCurrency();
     }
 
 }

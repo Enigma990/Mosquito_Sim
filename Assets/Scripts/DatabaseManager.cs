@@ -61,10 +61,18 @@ public class DatabaseManager : MonoBehaviour
     }
     private void OnGetUserInventorySuccess(GetUserInventoryResult result)
     {
+
         int coins = result.VirtualCurrency["CN"];
         int bloodVail = result.VirtualCurrency["BV"];
+        int gems = result.VirtualCurrency["GM"];
 
-        MainMenu.Instance.UpdateCurrencyText(0, coins, bloodVail);
+        Debug.Log("GOT VALUE" + coins);
+
+        coins = PlayerPrefs.GetInt("Coins");
+        gems = PlayerPrefs.GetInt("Gems");
+        bloodVail = PlayerPrefs.GetInt("BloodVails");
+
+        MainMenu.Instance.UpdateCurrencyText(gems, coins, bloodVail);
     }
 
     private void OnError(PlayFabError error)
@@ -87,6 +95,17 @@ public class DatabaseManager : MonoBehaviour
             Amount = GameManager.Instance.BloodVail
         };
         PlayFabClientAPI.AddUserVirtualCurrency(bloodVailRequest, OnUpdateVirtualCurrencySuccessful, OnError);
+
+        var gemsRequest = new AddUserVirtualCurrencyRequest()
+        {
+            VirtualCurrency = "GM",
+            Amount = GameManager.Instance.Gems
+        };
+        PlayFabClientAPI.AddUserVirtualCurrency(gemsRequest, OnUpdateVirtualCurrencySuccessful, OnError);
+
+        PlayerPrefs.SetInt("Gems", GameManager.Instance.Gems);
+        PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
+        PlayerPrefs.SetInt("BloodVail", GameManager.Instance.BloodVail);
 
     }
 
