@@ -3374,7 +3374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1432.3333, y: -177.98222}
+  m_AnchoredPosition: {x: 1432.3359, y: -177.98222}
   m_SizeDelta: {x: 326.2223, y: 228.0355}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555538315
@@ -4666,7 +4666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1432.3333, y: -177.98222}
+  m_AnchoredPosition: {x: 1432.3359, y: -177.98222}
   m_SizeDelta: {x: 326.2223, y: 228.0355}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &799508256
@@ -5660,7 +5660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1743.2222, y: -177.98222}
+  m_AnchoredPosition: {x: 1743.2188, y: -177.98222}
   m_SizeDelta: {x: 349.5555, y: 228.0355}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091149141
@@ -7435,7 +7435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 978.55554, y: -120.88895}
+  m_AnchoredPosition: {x: 978.5547, y: -120.88895}
   m_SizeDelta: {x: 580.2223, y: 342.2223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1355241545
@@ -7568,7 +7568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1743.2222, y: -177.98222}
+  m_AnchoredPosition: {x: 1743.2188, y: -177.98222}
   m_SizeDelta: {x: 349.5555, y: 228.0355}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397051190
@@ -38217,7 +38217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 978.55554, y: -120.88895}
+  m_AnchoredPosition: {x: 978.5547, y: -120.88895}
   m_SizeDelta: {x: 580.2223, y: 342.2223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6998878909297240400

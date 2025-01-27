@@ -85,11 +85,11 @@ public class PlayerController : MonoBehaviour
         {
             case MosquitoStates.Moving:
                 CheckDistanceToTarget();
-                Move();
+                //Move();
                 break;
 
             case MosquitoStates.EnterMiniGame:
-                MoveToTarget();
+                //MoveToTarget();
                 break;
 
             case MosquitoStates.InMiniGame:
@@ -97,13 +97,31 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case MosquitoStates.Returning:
-                MoveToRoot();
+                //MoveToRoot();
                 break;
 
             case MosquitoStates.Dead:   
                 break;
 
             case MosquitoStates.Completed:
+                break;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        switch (currentState)
+        {
+            case MosquitoStates.Moving:
+                Move();
+                break;
+
+            case MosquitoStates.EnterMiniGame:
+                MoveToTarget();
+                break;
+
+            case MosquitoStates.Returning:
+                MoveToRoot();
                 break;
         }
     }
