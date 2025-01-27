@@ -130,16 +130,17 @@ public class PlayerController : MonoBehaviour
     {
         health.SetArmourAmount(playerStats.GetArmourAmount());
 
-        float speedModifier = playerStats.GetSpeedAmount() * 0.5f;
+        float speedModifier = playerStats.GetSpeedAmount();
         if (speedModifier > 2)
         {
             speedModifier = 2;
         }
 
 
-
         masterController.SetMasterSpeed(speedModifier);
-        moveSpeed = speedModifier;
+        moveSpeed = speedModifier/2;
+
+        speedOfTrans = speedModifier*0.7f;
     }
 
     private void CheckDistanceToTarget()

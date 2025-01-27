@@ -16,6 +16,6 @@ MonoBehaviour:
   mosquitoPrefab: {fileID: 919132149155446097, guid: 644f47a6c6c08a54bacbe888af77d1e0,
     type: 3}
   armourAmount: 0
-  speed: 1
+  speed: 0.2
   stingMeter: 3
   bloodAmount: 0

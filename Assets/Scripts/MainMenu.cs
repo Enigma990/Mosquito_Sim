@@ -106,7 +106,7 @@ public class MainMenu : MonoBehaviour
     private void UpdateText()
     {
         stingerText.text = "Stinger" + Environment.NewLine + "Lvl" + (StatsManager.Instance.GetStingMeter() + 1);
-        speedText.text = "Speed" + Environment.NewLine + "Lvl" + (StatsManager.Instance.GetSpeed() + 1);
+        speedText.text = "Speed" + Environment.NewLine + "Lvl" + ((int)StatsManager.Instance.GetSpeed() + 1);
         stealthText.text = "Stealth" + Environment.NewLine + "Lvl" + (StatsManager.Instance.GetArmourAmount() + 1);
     }
 

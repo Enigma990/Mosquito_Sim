@@ -6,9 +6,14 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     private int armourAmount;
-    private float speed = 1;
+    private float speed = 0.5f;
     private int stingMeter;
     private int bloodAmount;
+
+    private int armourBase = 1;
+    private float speedBase = 0.2f;
+    private float stingMeterBase = 0.2f;
+    private float bloodAmountBase = 0.2f;
 
     private void Start()
     {

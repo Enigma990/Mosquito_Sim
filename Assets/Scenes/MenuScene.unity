@@ -2617,6 +2617,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ec9b661f8cefe67498556d079f389903, type: 2}
   - {fileID: 11400000, guid: 565bd51245cce714da3692407466ae3e, type: 2}
   - {fileID: 11400000, guid: 47f7eaf2e4e61c84d8cee661a05d4748, type: 2}
+  speedUpgradeLevels:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  armourUpgradeLevels: 02000000050000000a0000000f00000014000000
+  stingMeterUpgradeLevels: 02000000050000000a0000000f00000014000000
+  bloodAmountUpgradeLevels: 02000000050000000a0000000f00000014000000
 --- !u!1 &480421868
 GameObject:
   m_ObjectHideFlags: 0

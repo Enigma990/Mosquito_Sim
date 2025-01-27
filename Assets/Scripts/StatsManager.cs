@@ -6,14 +6,24 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance { get; private set; }
 
+    // values in percentage
     private int armourAmount = 0;
-    private int speed = 0;
+    private float speed = 0;
     private int stingMeter = 0;
     private int bloodAmount = 0;
+
+    private int speedLevel = 0;
+    private int armourLevel = 0;
+    private int stingMeterLevel = 0;
+    private int bloodAmountLevel = 0;
 
     private GameObject selectedMosquito;
 
     [SerializeField] private MosquitoStatsSO[] mosquitoStatsSO;
+    [SerializeField] private float[] speedUpgradeLevels;
+    [SerializeField] private int[] armourUpgradeLevels;
+    [SerializeField] private int[] stingMeterUpgradeLevels;
+    [SerializeField] private int[] bloodAmountUpgradeLevels;
 
     private void Awake()
     {
@@ -24,6 +34,11 @@ public class StatsManager : MonoBehaviour
 
     public void SelectedMosquito(MosquitoType mosquitoType)
     {
+        speed = speedUpgradeLevels[speedLevel];
+        armourAmount = armourUpgradeLevels[armourLevel];
+        stingMeter = stingMeterUpgradeLevels[stingMeterLevel];
+        bloodAmount = bloodAmountUpgradeLevels[bloodAmountLevel];
+
         switch (mosquitoType)
         {
             case MosquitoType.Queen:
@@ -54,23 +69,39 @@ public class StatsManager : MonoBehaviour
 
     public void UpgradeArmour()
     {
-        armourAmount += 1;
+        armourLevel += 1;
+        if (armourLevel >= armourUpgradeLevels.Length)
+        {
+            armourLevel = armourUpgradeLevels.Length - 1;
+        }
     }
     public void UpgradeSpeed()
     {
-        speed += 1;
+        speedLevel += 1;
+        if (speedLevel >= speedUpgradeLevels.Length)
+        {
+            speedLevel = speedUpgradeLevels.Length - 1;
+        }
     }
     public void UpgradeStingMeter()
     {
-        stingMeter += 1;
+        stingMeterLevel += 1;
+        if (stingMeterLevel >= stingMeterUpgradeLevels.Length)
+        {
+            stingMeterLevel = stingMeterUpgradeLevels.Length - 1;
+        }
     }
     public void UpgradeBloodAmount()
     {
-        bloodAmount += 1;
+        bloodAmountLevel += 1;
+        if (bloodAmountLevel >= bloodAmountUpgradeLevels.Length)
+        {
+            bloodAmountLevel = bloodAmountUpgradeLevels.Length - 1;
+        }
     }
 
     public int GetArmourAmount() => armourAmount;
-    public int GetSpeed() => speed;
+    public float GetSpeed() => speed;
     public int GetStingMeter() => stingMeter;
     public int GetBloodAmount() => bloodAmount;
 
