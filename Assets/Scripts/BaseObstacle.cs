@@ -5,23 +5,20 @@ using UnityEngine;
 public class BaseObstacle : MonoBehaviour
 {
     [SerializeField] protected int damageAmount = 10;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject attackZone;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public virtual void OnPlayerEnterObstacleZone(Transform playerTransform)
     {
         if (playerTransform.parent.TryGetComponent(out HealthSystem health))
         {
+            attackZone.SetActive(false);
+            if (animator)
+            {
+                animator.SetTrigger("Attack");
+            }
+
             health.Damage(damageAmount);
         }
     }
