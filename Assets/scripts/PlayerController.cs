@@ -208,6 +208,7 @@ public class PlayerController : MonoBehaviour
     {
         // Move Towards Target in slow speed while reaction bar mini game is active
         Vector3 targetPosition = LevelManager.Instance.GetCurrentTargetPosition();
+        targetPosition.y = transform.position.y;
         Vector3 moveDir = (targetPosition - transform.position).normalized;
 
         transform.position += moveDir * speedOfTrans * Time.deltaTime;
@@ -236,7 +237,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveToRoot()
     {
-        if (Vector3.Distance(transform.localPosition, Vector3.zero) < 0.5f)
+        if (Vector3.Distance(transform.localPosition, Vector3.zero) < 0.1f)
         {
             transform.localPosition = Vector3.zero;
 
@@ -251,7 +252,7 @@ public class PlayerController : MonoBehaviour
         transform.localPosition += moveDir * speedOfTrans * Time.deltaTime;
         transform.localEulerAngles = Vector3.zero;
 
-        transform.LookAt(moveDir);
+        //transform.LookAt(moveDir);
 
     }
 
