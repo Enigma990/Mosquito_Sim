@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 42f71058d41e6bb4b972d3a3a8da9c8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OLDCLOCKE
+    second: {fileID: 2100000, guid: 8a437f7514c7df243b6327fd68dcafd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: glass
     second: {fileID: 2100000, guid: 42f71058d41e6bb4b972d3a3a8da9c8c, type: 2}
   - first:
