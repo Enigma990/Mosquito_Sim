@@ -2619,10 +2619,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47f7eaf2e4e61c84d8cee661a05d4748, type: 2}
   speedUpgradeLevels:
   - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
+  - 0.4
+  - 0.6
+  - 0.8
+  - 1
   armourUpgradeLevels: 02000000050000000a0000000f00000014000000
   stingMeterUpgradeLevels: 02000000050000000a0000000f00000014000000
   bloodAmountUpgradeLevels: 02000000050000000a0000000f00000014000000
