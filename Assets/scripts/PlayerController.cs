@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStats playerStats;
 
     private MosquitoStates currentState;
+    private Vector3 bitePosition;
 
     private void Awake()
     {
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
         switch(currentState)
         {
             case MosquitoStates.Moving:
-                CheckDistanceToTarget();
+                //CheckDistanceToTarget();
                 //Move();
                 break;
 
@@ -207,7 +208,8 @@ public class PlayerController : MonoBehaviour
     private void MoveToTarget()
     {
         // Move Towards Target in slow speed while reaction bar mini game is active
-        Vector3 targetPosition = LevelManager.Instance.GetCurrentTargetPosition();
+        Vector3 targetPosition = bitePosition;
+        //targetPosition.y = transform.position.y;
         Vector3 moveDir = (targetPosition - transform.position).normalized;
 
         transform.position += moveDir * speedOfTrans * Time.deltaTime;
@@ -236,7 +238,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveToRoot()
     {
-        if (Vector3.Distance(transform.localPosition, Vector3.zero) < 0.5f)
+        if (Vector3.Distance(transform.localPosition, Vector3.zero) < 0.1f)
         {
             transform.localPosition = Vector3.zero;
 
@@ -251,7 +253,7 @@ public class PlayerController : MonoBehaviour
         transform.localPosition += moveDir * speedOfTrans * Time.deltaTime;
         transform.localEulerAngles = Vector3.zero;
 
-        transform.LookAt(moveDir);
+        //transform.LookAt(moveDir);
 
     }
 
@@ -373,6 +375,22 @@ public class PlayerController : MonoBehaviour
             gemsCollected += 1;
             gemsText.text = gemsCollected.ToString();
             GameManager.Instance.AddGems(1);
+        }
+
+        if (other.CompareTag("Human"))
+        {
+            if (other.TryGetComponent(out HumanTarget humanTarget))
+            {
+                if (humanTarget.GetVisited())
+                    return;
+
+                bitePosition = humanTarget.GetBitePosition();
+                humanTarget.SetVisited();
+
+                // Start Moving Towards target
+                masterController.StopCart();// only stop logic after implementing states we can use start also (use W to move again).
+                UpdateMosquitoState(MosquitoStates.EnterMiniGame);
+            }
         }
     }
 

@@ -19,6 +19,7 @@ public class InGameMenu : MonoBehaviour
     [Header("In Game UI")]
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private TextMeshProUGUI gemsText;
+    [SerializeField] private GameObject onHitImage;
 
     [Header("PowerUps")]
     [SerializeField] private Button armourButton;
@@ -57,6 +58,8 @@ public class InGameMenu : MonoBehaviour
         {
             OpenPauseMenu();
         });
+
+        HealthSystem.OnAnyHit += HealthSystem_OnAnyHit;
     }
 
     private void PlayerController_OnGameFinished(object sender, bool gameCompeleted)
@@ -88,5 +91,23 @@ public class InGameMenu : MonoBehaviour
     public void UpdateCoinsText()
     {
 
+    }
+
+
+    private void HealthSystem_OnAnyHit(object sender, System.EventArgs e)
+    {
+        ShowHitImage();
+    }
+
+    private void ShowHitImage()
+    {
+        onHitImage.SetActive(true);
+
+        Invoke(nameof(HideHitImage), 0.4f);
+    }
+
+    private void HideHitImage()
+    {
+        onHitImage.SetActive(false);
     }
 }
