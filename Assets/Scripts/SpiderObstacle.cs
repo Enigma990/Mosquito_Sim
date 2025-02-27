@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpiderObstacle : BaseObstacle
 {
     [SerializeField] private GameObject webPrefab;
-    [SerializeField] private LayerMask playerLayer;
 
     private float shootTimer = 1f;
     private float currentTimer = 0f;
@@ -13,13 +12,6 @@ public class SpiderObstacle : BaseObstacle
     private Transform playerTransform;
     private bool hasPlayer = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (hasPlayer)

@@ -10,13 +10,16 @@ public class ReactionBarMechanic : MonoBehaviour
     public RectTransform pointer;
     public RectTransform GreenPart;
 
+    [SerializeField] private GameObject normalTimerImage;
+    [SerializeField] private GameObject warnedTimerImage;
+
 
     [Header("")]
     [Range(0f, 100f)]
     public float _value = 0f;
 
-    public float minValue = 0f;
-    public float maxValue = 100f;
+    public float minValue = 16f;
+    public float maxValue = 84f;
 
     public float lerpSpeed = 2f;
 
@@ -35,7 +38,8 @@ public class ReactionBarMechanic : MonoBehaviour
     {
         //StartMiniGame();
 
-
+        normalTimerImage.SetActive(true);
+        warnedTimerImage.SetActive(false);
     }
 
 
@@ -69,17 +73,23 @@ public class ReactionBarMechanic : MonoBehaviour
 
         if (isWarned)
         {
-            GreenPart.gameObject.SetActive(false);
+            normalTimerImage.SetActive(false);
+            warnedTimerImage.SetActive(true);
 
-            yellowMiddleValue = 22; // + 56
+            //GreenPart.gameObject.SetActive(false);
+
+            yellowMiddleValue = 31; // + 36
 
         }
         else
         {
-            GreenPart.gameObject.SetActive(true);
+            normalTimerImage.SetActive(true);
+            warnedTimerImage.SetActive(false);
 
-            greenMiddleValue = 45;
-            yellowMiddleValue = 22; // + 56
+            //GreenPart.gameObject.SetActive(true);
+
+            greenMiddleValue = 40;  // + 19
+            yellowMiddleValue = 31; // + 36
         }
 
 
@@ -141,7 +151,7 @@ public class ReactionBarMechanic : MonoBehaviour
 
     private void CheckForNormalState()
     {
-        if (greenMiddleValue <= _value && _value <= (greenMiddleValue + 10))
+        if (greenMiddleValue <= _value && _value <= (greenMiddleValue + 19))
         {
             Debug.Log("You won !!!");
             OnWin.Invoke();
@@ -149,7 +159,7 @@ public class ReactionBarMechanic : MonoBehaviour
             PlayerController.Instance.MiniGameCompleted(true);
             GameManager.Instance.MiniGameCompleted(10);
         }
-        else if (_value >= yellowMiddleValue && _value <= (yellowMiddleValue + 56))
+        else if (_value >= yellowMiddleValue && _value <= (yellowMiddleValue + 36))
         {
             Debug.Log("YELLOW");
             PlayerController.Instance.StartMiniGameWithWarning();
@@ -167,7 +177,7 @@ public class ReactionBarMechanic : MonoBehaviour
 
     private void CheckForWarnedState()
     {
-        if (_value >= yellowMiddleValue && _value <= (yellowMiddleValue + 56))
+        if (_value >= yellowMiddleValue && _value <= (yellowMiddleValue + 36))
         {
             Debug.Log("YELLOW");
             OnWin.Invoke();
