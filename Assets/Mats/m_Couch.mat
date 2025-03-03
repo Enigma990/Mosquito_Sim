@@ -126,7 +126,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimPower: 0.13
+    - _RimPower: 0.19
     - _RimSize: 0.73
     - _Rim_Light_Brightness: 0.25
     - _Smoothness: 0.5
